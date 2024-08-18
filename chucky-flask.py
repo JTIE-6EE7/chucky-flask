@@ -1,12 +1,18 @@
 #!/usr/bin/env python3
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash
 
 app = Flask(__name__)
+app.secret_key = "manbearpig_MUDMAN888"
 
-@app.route("/")
+@app.route("/hello")
 def index():
-    return render_template("index.html")
+	flash("what's your name?")
+	return render_template("index.html")
+
+@app.route("/greet", methods=['POST', 'GET'])
+def greeter():
+	flash("Hi " + str(request.form['name_input']) + ", great to see you!")
+	return render_template("index.html")
 
 app.run(host="0.0.0.0", port=8089)
-
