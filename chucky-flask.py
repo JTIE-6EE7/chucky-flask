@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Flasky stuff"
+    return render_template("index.html")
 
 app.run(host="0.0.0.0", port=8089)
 
